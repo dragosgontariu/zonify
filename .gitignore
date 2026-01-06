@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyc
+*.pyo
+
+# QGIS
+*.qgs~
+*.qgz~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+*.tmp
+checkpoints/
+temp/
+
+# IDE
+.vscode/
+.idea/

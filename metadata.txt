@@ -1,0 +1,45 @@
+[general]
+name=Zonify
+qgisMinimumVersion=3.28
+qgisMaximumVersion=3.99
+description=Advanced batch zonal statistics processor with smart resource management and professional reporting
+version=1.0.0
+author=Dragos Gontariu
+email=gontariudragos@gmail.com
+
+about=Zonify is a powerful QGIS plugin for professional geospatial analysts who need 
+      to process multiple rasters against polygon layers with advanced capabilities. 
+      Features include: batch processing of unlimited rasters, 15+ statistical measures 
+      (mean, median, percentiles, spatial autocorrelation, etc.), custom user-defined 
+      formulas, before/after comparison analysis, temporal trend detection, export to 
+      8+ formats (GeoPackage, CSV, Excel, PDF, HTML), professional interactive reports, 
+      resume/checkpoint system for long-running jobs, smart resource management with 
+      user-controlled RAM/CPU limits, and true background processing that keeps QGIS 
+      fully responsive.
+
+tracker=https://github.com/dragosgontariu/zonify/issues
+repository=https://github.com/dragosgontariu/zonify
+homepage=https://github.com/dragosgontariu/zonify
+
+category=Analysis
+icon=icon.png
+experimental=False
+deprecated=False
+
+tags=zonal,statistics,batch,raster,analysis
+
+changelog=1.0.0
+    - Initial release
+    - Batch processing of multiple rasters
+    - 15+ statistical measures
+    - Custom formula support
+    - Before/after comparison analysis
+    - Temporal trend detection
+    - Spatial autocorrelation (Moran's I, Getis-Ord Gi*)
+    - Export to 8+ formats
+    - Professional HTML and PDF reports
+    - Resume/checkpoint system
+    - Smart resource management (user-controlled RAM/CPU)
+    - True background processing (non-blocking)
+
+external_deps=numpy>=1.24.0,pandas>=2.0.0,scipy>=1.11.0,openpyxl>=3.1.0,plotly>=5.18.0,matplotlib>=3.8.0,reportlab>=4.0.0,jinja2>=3.1.0
