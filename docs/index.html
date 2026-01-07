@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zonify - Advanced Zonal Statistics Processor for QGIS. Professional batch processing with interactive reports.">
+    <title>Zonify - Advanced Zonal Statistics for QGIS</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --darker: #111827;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Features Section */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Screenshots */
+        .screenshots {
+            background: white;
+        }
+
+        .screenshot-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .download-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .download-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            opacity: 0.6;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .badge {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                🗺️ Zonify
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify#installation">Documentation</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Advanced Zonal Statistics for QGIS</h1>
+            <p>Professional batch processing with smart resource management and interactive reports. Process unlimited rasters with 15+ statistical measures.</p>
+            
+            <div class="badges">
+                <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version" class="badge">
+                <img src="https://img.shields.io/badge/license-GPL--3.0-green.svg" alt="License" class="badge">
+                <img src="https://img.shields.io/badge/QGIS-3.28+-orange.svg" alt="QGIS" class="badge">
+                <img src="https://img.shields.io/badge/python-3.9+-blue.svg" alt="Python" class="badge">
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/dragosgontariu/zonify/releases/latest" class="btn btn-primary">📥 Download v1.0.0</a>
+                <a href="https://github.com/dragosgontariu/zonify" class="btn btn-secondary">⭐ View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Statistical Measures</p>
+            </div>
+            <div class="stat-item">
+                <h3>500K+</h3>
+                <p>Features Tested</p>
+            </div>
+            <div class="stat-item">
+                <h3>20+</h3>
+                <p>Simultaneous Rasters</p>
+            </div>
+            <div class="stat-item">
+                <h3>8</h3>
+                <p>Export Formats</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <h2 class="section-title">Powerful Features</h2>
+        <p class="section-subtitle">Everything you need for professional zonal statistics analysis</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Batch Processing</h3>
+                <p>Process unlimited rasters against polygon layers in one run. Multi-threaded processing with smart resource management.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>15+ Statistics</h3>
+                <p>Mean, median, sum, min, max, percentiles, standard deviation, coefficient of variation, and more.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Advanced Tools</h3>
+                <p>Score Creator, Area Classifier, Quick Map Generator, Time Series Analysis, and Rule Tagger.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Interactive Reports</h3>
+                <p>Professional HTML dashboards with charts, dark/light mode, search, and pagination.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Smart Performance</h3>
+                <p>User-controlled RAM/CPU limits, checkpoint system, resume capability, background processing.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Multiple Formats</h3>
+                <p>Export to GeoPackage, CSV, JSON, HTML dashboards, and PDF reports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section screenshots" id="screenshots">
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-subtitle">Professional interface and beautiful reports</p>
+
+        <div class="screenshot-container">
+            <div class="screenshot">
+                <img src="https://raw.githubusercontent.com/dragosgontariu/zonify/main/docs/images/01_main_interface.png" alt="Main Interface">
+            </div>
+            <div class="screenshot">
+                <img src="https://raw.githubusercontent.com/dragosgontariu/zonify/main/docs/images/03_html_dashboard.png" alt="HTML Dashboard">
+            </div>
+            <div class="screenshot">
+                <img src="https://raw.githubusercontent.com/dragosgontariu/zonify/main/docs/images/04_score_creator.png" alt="Score Creator">
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section" id="download">
+        <div class="download-content">
+            <div class="version-badge">Latest Release: v1.0.0</div>
+            <h2>Ready to Get Started?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.125rem;">Download Zonify and start processing your geospatial data today!</p>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/dragosgontariu/zonify/releases/latest" class="btn btn-primary">📥 Download Now</a>
+                <a href="https://github.com/dragosgontariu/zonify/blob/main/docs/QUICK_START.md" class="btn btn-secondary">📖 Quick Start Guide</a>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.9;">
+                <strong>Requirements:</strong> QGIS 3.28+ | Python 3.9+ | 4GB RAM (16GB recommended)
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/dragosgontariu/zonify">GitHub</a>
+                <a href="https://github.com/dragosgontariu/zonify/blob/main/docs/USER_GUIDE.md">User Guide</a>
+                <a href="https://github.com/dragosgontariu/zonify/blob/main/docs/FAQ.md">FAQ</a>
+                <a href="https://github.com/dragosgontariu/zonify/issues">Issues</a>
+                <a href="https://github.com/dragosgontariu/zonify/blob/main/CONTRIBUTING.md">Contributing</a>
+                <a href="https://github.com/dragosgontariu/zonify/blob/main/LICENSE">License</a>
+            </div>
+
+            <p class="copyright">
+                © 2026 Zonify | Created by Dragos Gontariu | Licensed under GPL-3.0
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
