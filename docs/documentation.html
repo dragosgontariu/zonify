@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zonify - Documentation</title>
+    <title>Zonify - Complete Documentation</title>
     
     <style>
         * {
@@ -16,10 +16,13 @@
             --primary: #3b82f6;
             --primary-light: #60a5fa;
             --primary-dark: #2563eb;
+            --primary-darker: #1e40af;
+            --secondary: #10b981;
             --dark: #1f2937;
             --darker: #111827;
             --light: #f9fafb;
             --gray: #6b7280;
+            --gray-light: #d1d5db;
             --border: #e5e7eb;
         }
 
@@ -35,11 +38,14 @@
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 50%, var(--primary-dark) 100%);
             color: white;
             padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -82,76 +88,144 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* Main Content */
-        .container {
-            max-width: 1200px;
+        /* Container */
+        .doc-container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 3rem 2rem;
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 3rem;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 2rem;
         }
 
         /* Sidebar */
         .sidebar {
             position: sticky;
-            top: 2rem;
+            top: 6rem;
             height: fit-content;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 1.5rem;
         }
 
         .sidebar h3 {
             font-size: 0.875rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: var(--gray);
+            color: var(--primary);
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
+        /* Accordion Menu */
+        .accordion-section {
             margin-bottom: 0.5rem;
         }
 
-        .sidebar a {
-            color: var(--dark);
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 1rem;
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--light);
             border-radius: 0.5rem;
+            cursor: pointer;
             transition: all 0.3s;
+            font-weight: 600;
+            color: var(--dark);
         }
 
-        .sidebar a:hover {
-            background: white;
+        .accordion-header:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .accordion-header.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.show {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+
+        .accordion-content li {
+            margin: 0;
+        }
+
+        .accordion-content a {
+            display: block;
+            padding: 0.5rem 1rem 0.5rem 2rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 2px solid transparent;
+        }
+
+        .accordion-content a:hover {
             color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: rgba(59, 130, 246, 0.05);
+            border-left-color: var(--primary);
         }
 
         /* Content */
         .content {
             background: white;
-            padding: 3rem;
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 3rem;
         }
 
         .content h1 {
             font-size: 2.5rem;
             color: var(--dark);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .content section {
+            margin-top: 3rem;
+            scroll-margin-top: 6rem;
         }
 
         .content h2 {
-            font-size: 1.875rem;
+            font-size: 2rem;
             color: var(--dark);
-            margin-top: 3rem;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary);
+            border-bottom: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .content h3 {
@@ -159,6 +233,13 @@
             color: var(--dark);
             margin-top: 2rem;
             margin-bottom: 1rem;
+        }
+
+        .content h4 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .content p {
@@ -175,11 +256,48 @@
 
         .content li {
             margin-bottom: 0.5rem;
+            line-height: 1.8;
         }
 
+        /* Info boxes */
+        .info-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box h4 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.05) 100%);
+            border-left-color: var(--secondary);
+        }
+
+        .success-box h4 {
+            color: var(--secondary);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+            border-left-color: #f59e0b;
+        }
+
+        .warning-box h4 {
+            color: #f59e0b;
+        }
+
+        /* Code blocks */
         .content code {
             background: var(--light);
-            padding: 0.2rem 0.4rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 0.25rem;
             font-family: 'Courier New', monospace;
             font-size: 0.875rem;
@@ -190,9 +308,10 @@
             background: var(--darker);
             color: #e5e7eb;
             padding: 1.5rem;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             overflow-x: auto;
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
+            position: relative;
         }
 
         .content pre code {
@@ -201,17 +320,94 @@
             padding: 0;
         }
 
-        .doc-card {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--primary);
-            margin-bottom: 1.5rem;
+        /* Feature grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .doc-card h4 {
-            color: var(--primary);
+        .feature-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+            border-color: var(--primary-light);
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
             margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         /* Footer */
@@ -223,8 +419,18 @@
             margin-top: 4rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
+        footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .doc-container {
                 grid-template-columns: 1fr;
             }
 
@@ -235,6 +441,15 @@
             .nav-links {
                 display: none;
             }
+
+            .content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -256,241 +471,830 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
+    <!-- Documentation Container -->
+    <div class="doc-container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <h3>Documentation</h3>
-            <ul>
-                <li><a href="#getting-started">Getting Started</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#quick-start">Quick Start</a></li>
-                <li><a href="#features">Core Features</a></li>
-                <li><a href="#advanced">Advanced Tools</a></li>
-                <li><a href="#export">Export Formats</a></li>
-                <li><a href="#performance">Performance</a></li>
-                <li><a href="#troubleshooting">Troubleshooting</a></li>
-            </ul>
+            <h3>📖 DOCUMENTATION</h3>
 
-            <h3 style="margin-top: 2rem;">Resources</h3>
-            <ul>
-                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/QUICK_START.md">Quick Start Guide</a></li>
-                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/USER_GUIDE.md">User Guide</a></li>
-                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/FAQ.md">FAQ</a></li>
-                <li><a href="https://github.com/dragosgontariu/zonify/issues">Support</a></li>
-            </ul>
+            <!-- Getting Started -->
+            <div class="accordion-section">
+                <div class="accordion-header active" onclick="toggleAccordion(this)">
+                    <span>🚀 Getting Started</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content show">
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#requirements">Requirements</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Start -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>⚡ Quick Start</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#basic-workflow">Basic Workflow</a></li>
+                        <li><a href="#example-scenarios">Example Scenarios</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Core Features -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📊 Core Features</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#statistics">Statistical Measures</a></li>
+                        <li><a href="#coverage">Coverage Analysis</a></li>
+                        <li><a href="#batch-processing">Batch Processing</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Advanced Tools -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🎨 Advanced Tools</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#score-creator">Score Creator</a></li>
+                        <li><a href="#area-classifier">Area Classifier</a></li>
+                        <li><a href="#quick-map">Quick Map</a></li>
+                        <li><a href="#time-series">Time Series</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Export & Reports -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📤 Export & Reports</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#export-formats">Export Formats</a></li>
+                        <li><a href="#html-dashboard">HTML Dashboard</a></li>
+                        <li><a href="#pdf-reports">PDF Reports</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Performance -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>⚡ Performance</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#optimization">Optimization</a></li>
+                        <li><a href="#benchmarks">Benchmarks</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>❓ FAQ</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#faq-installation">Installation</a></li>
+                        <li><a href="#faq-usage">Usage</a></li>
+                        <li><a href="#faq-performance">Performance</a></li>
+                        <li><a href="#faq-troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <h3 style="margin-top: 2rem;">🔗 RESOURCES</h3>
+            <div style="padding: 0 1rem;">
+                <a href="https://github.com/dragosgontariu/zonify" style="display: block; padding: 0.5rem; color: var(--gray); text-decoration: none;">GitHub Repository</a>
+                <a href="https://github.com/dragosgontariu/zonify/issues" style="display: block; padding: 0.5rem; color: var(--gray); text-decoration: none;">Report Issues</a>
+                <a href="https://github.com/dragosgontariu/zonify/discussions" style="display: block; padding: 0.5rem; color: var(--gray); text-decoration: none;">Discussions</a>
+            </div>
         </aside>
 
-        <!-- Content -->
+        <!-- Main Content -->
         <main class="content">
             <h1>Zonify Documentation</h1>
-            <p>Complete guide to using Zonify for advanced zonal statistics analysis in QGIS.</p>
+            <p class="subtitle">Complete guide to advanced zonal statistics analysis in QGIS</p>
 
-            <section id="getting-started">
-                <h2>Getting Started</h2>
-                <p>Zonify is a professional QGIS plugin for performing advanced zonal statistics analysis. It allows you to efficiently extract and analyze raster data within polygon zones.</p>
+            <!-- Introduction -->
+            <section id="introduction">
+                <h2>🎯 Introduction</h2>
+                <p>Zonify is a professional QGIS plugin for performing advanced zonal statistics analysis. It allows you to efficiently extract and analyze raster data within polygon zones, with support for batch processing, multiple statistics, and professional reporting.</p>
 
-                <div class="doc-card">
+                <div class="info-box">
                     <h4>✨ What makes Zonify special?</h4>
                     <ul>
                         <li>Process unlimited rasters in one batch</li>
-                        <li>15+ statistical measures including coverage analysis</li>
+                        <li>15+ statistical measures including pixel-perfect coverage analysis</li>
                         <li>Multi-threaded processing with smart resource management</li>
                         <li>Professional HTML dashboards and PDF reports</li>
-                        <li>Advanced tools: Score Creator, Classifier, Map Generator</li>
+                        <li>Advanced tools: Score Creator, Classifier, Map Generator, Time Series</li>
+                        <li>Resume capability for long-running jobs</li>
                     </ul>
                 </div>
             </section>
 
-            <section id="installation">
-                <h2>Installation</h2>
+            <!-- Requirements -->
+            <section id="requirements">
+                <h2>🔧 Requirements</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">🖥️</div>
+                        <h4>QGIS</h4>
+                        <p><strong>Minimum:</strong> 3.28<br><strong>Recommended:</strong> 3.34+</p>
+                    </div>
 
-                <h3>Requirements</h3>
-                <ul>
-                    <li><strong>QGIS:</strong> 3.28 or higher</li>
-                    <li><strong>Python:</strong> 3.9 or higher</li>
-                    <li><strong>RAM:</strong> 4GB minimum, 16GB recommended</li>
-                    <li><strong>CPU:</strong> 2 cores minimum, 4+ recommended</li>
-                </ul>
+                    <div class="feature-card">
+                        <div class="icon">🐍</div>
+                        <h4>Python</h4>
+                        <p><strong>Minimum:</strong> 3.9<br><strong>Recommended:</strong> 3.11+</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">💾</div>
+                        <h4>RAM</h4>
+                        <p><strong>Minimum:</strong> 4GB<br><strong>Recommended:</strong> 16GB</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">⚙️</div>
+                        <h4>CPU</h4>
+                        <p><strong>Minimum:</strong> 2 cores<br><strong>Recommended:</strong> 4+ cores</p>
+                    </div>
+                </div>
+
+                <h3>Python Dependencies</h3>
+                <pre><code>numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0
+matplotlib>=3.8.0
+plotly>=5.18.0
+reportlab>=4.0.0
+jinja2>=3.1.0
+psutil>=5.9
+pyarrow>=12.0</code></pre>
+            </section>
+
+            <!-- Installation -->
+            <section id="installation">
+                <h2>📥 Installation</h2>
 
                 <h3>Step 1: Download Plugin</h3>
-                <p>Download the latest release from <a href="https://github.com/dragosgontariu/zonify/releases/latest">GitHub Releases</a>.</p>
+                <p>Download the latest release from <a href="https://github.com/dragosgontariu/zonify/releases/latest" target="_blank">GitHub Releases</a> or install directly from QGIS Plugin Manager (coming soon).</p>
 
                 <h3>Step 2: Install to QGIS</h3>
                 <p>Extract the ZIP file to your QGIS plugins directory:</p>
-                <ul>
-                    <li><strong>Windows:</strong> <code>C:\Users\&lt;username&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></li>
-                    <li><strong>Linux:</strong> <code>~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/</code></li>
-                    <li><strong>macOS:</strong> <code>~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/</code></li>
-                </ul>
+
+                <div class="info-box">
+                    <h4>📁 Plugin Directories</h4>
+                    <p><strong>Windows:</strong><br><code>C:\Users\&lt;username&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></p>
+                    <p><strong>Linux:</strong><br><code>~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/</code></p>
+                    <p><strong>macOS:</strong><br><code>~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/</code></p>
+                </div>
 
                 <h3>Step 3: Install Python Dependencies</h3>
-                <p><strong>Windows (OSGeo4W Shell as Administrator):</strong></p>
+                
+                <h4>Windows (OSGeo4W Shell as Administrator):</h4>
                 <pre><code>pip install numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
 
-                <p><strong>Linux/Mac:</strong></p>
+                <h4>Linux/Mac:</h4>
                 <pre><code>pip3 install --user numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
 
                 <h3>Step 4: Enable Plugin</h3>
                 <ol>
                     <li>Restart QGIS</li>
-                    <li>Go to Plugins → Manage and Install Plugins</li>
-                    <li>Find "Zonify" and check the box</li>
+                    <li>Go to <strong>Plugins → Manage and Install Plugins</strong></li>
+                    <li>Find <strong>"Zonify"</strong> in the list</li>
+                    <li>Check the box to enable it</li>
                     <li>Look for the Zonify icon in the toolbar</li>
                 </ol>
+
+                <div class="success-box">
+                    <h4>✅ Installation Complete!</h4>
+                    <p>You're now ready to start using Zonify. Check out the Quick Start section to begin!</p>
+                </div>
             </section>
 
-            <section id="quick-start">
-                <h2>Quick Start</h2>
+            <!-- Quick Start -->
+            <section id="basic-workflow">
+                <h2>⚡ Quick Start - Basic Workflow</h2>
                 <p>Get started with Zonify in 5 minutes!</p>
 
-                <h3>Basic Workflow</h3>
-                <ol>
-                    <li><strong>Open Zonify:</strong> Click the Zonify icon or go to Plugins → Zonify</li>
-                    <li><strong>Select Polygon Layer:</strong> Choose your zones/regions layer</li>
-                    <li><strong>Add Rasters:</strong> Click "Add Raster(s)" and select your files</li>
-                    <li><strong>Choose Statistics:</strong> Select which statistics to calculate (Mean, Sum, etc.)</li>
-                    <li><strong>Set Output:</strong> Choose where to save results</li>
-                    <li><strong>Run Processing:</strong> Click "Run Processing" button</li>
+                <ol style="font-size: 1.1rem; line-height: 2;">
+                    <li><strong>Open Zonify:</strong> Click the Zonify icon in the toolbar or go to <em>Plugins → Zonify</em></li>
+                    <li><strong>Select Polygon Layer:</strong> Choose your zones/regions layer from the dropdown</li>
+                    <li><strong>Add Rasters:</strong> Click "Add Raster(s)" button and select one or more raster files</li>
+                    <li><strong>Choose Statistics:</strong> Check the statistics you want to calculate (Mean, Sum, Min, Max, etc.)</li>
+                    <li><strong>Set Output Path:</strong> Choose where to save your results</li>
+                    <li><strong>Run Processing:</strong> Click the "Run Processing" button and watch the magic happen!</li>
                 </ol>
 
-                <div class="doc-card">
-                    <h4>💡 Pro Tip</h4>
-                    <p>Start with a small dataset (10-20 polygons, 1 raster) to test the workflow before processing large datasets.</p>
+                <div class="info-box">
+                    <h4>💡 Pro Tips</h4>
+                    <ul>
+                        <li>Start with a small dataset (10-20 polygons, 1 raster) to test the workflow</li>
+                        <li>Use GeoPackage (.gpkg) format for output - it's the most efficient</li>
+                        <li>Enable HTML Dashboard export to get interactive visualizations</li>
+                        <li>QGIS stays fully responsive during processing - you can continue working!</li>
+                    </ul>
                 </div>
             </section>
 
-            <section id="features">
-                <h2>Core Features</h2>
+            <!-- Example Scenarios -->
+            <section id="example-scenarios">
+                <h2>📋 Example Scenarios</h2>
 
-                <h3>Statistical Measures</h3>
-                <p>Zonify calculates 15+ statistical measures:</p>
-                <ul>
-                    <li><strong>Position:</strong> Mean, Median, Mode, Min, Max</li>
-                    <li><strong>Dispersion:</strong> Sum, Standard Deviation, Variance, CV, Range</li>
-                    <li><strong>Distribution:</strong> Percentiles (25th, 50th, 75th, 90th, 95th)</li>
-                    <li><strong>Coverage:</strong> Pixel count and coverage percentage (pixel-perfect geometric analysis)</li>
-                </ul>
+                <div class="feature-card">
+                    <div class="icon">🌊</div>
+                    <h4>Flood Risk Assessment</h4>
+                    <p><strong>Goal:</strong> Calculate flood exposure per district</p>
+                    <p><strong>Input:</strong> City districts (polygons) + Flood depth raster + Population density raster</p>
+                    <p><strong>Statistics:</strong> Mean flood depth, Sum population</p>
+                    <p><strong>Time:</strong> ~30 seconds for 100 districts</p>
+                </div>
 
-                <h3>Coverage Analysis</h3>
-                <p>Coverage shows what percentage of each polygon contains valid raster data. This is crucial for:</p>
-                <ul>
-                    <li>Data quality assessment</li>
-                    <li>Identifying incomplete coverage</li>
-                    <li>Understanding NoData areas</li>
-                    <li>Making informed decisions about statistical validity</li>
-                </ul>
+                <div class="feature-card">
+                    <div class="icon">🌳</div>
+                    <h4>Forest Monitoring</h4>
+                    <p><strong>Goal:</strong> Track forest cover changes over time</p>
+                    <p><strong>Input:</strong> Forest parcels + NDVI time series (monthly, 3 years)</p>
+                    <p><strong>Statistics:</strong> Mean NDVI + Time Series Analysis</p>
+                    <p><strong>Time:</strong> ~5 minutes for 500 parcels × 36 rasters</p>
+                </div>
 
-                <h3>Batch Processing</h3>
-                <p>Process multiple rasters simultaneously with:</p>
-                <ul>
-                    <li>Multi-threaded processing (use all CPU cores)</li>
-                    <li>Smart RAM management</li>
-                    <li>Resume/checkpoint system</li>
-                    <li>Background processing (QGIS stays responsive)</li>
-                </ul>
+                <div class="feature-card">
+                    <div class="icon">🏙️</div>
+                    <h4>Urban Accessibility</h4>
+                    <p><strong>Goal:</strong> Analyze access to services</p>
+                    <p><strong>Input:</strong> Neighborhoods + Travel time to hospitals/schools/parks</p>
+                    <p><strong>Statistics:</strong> Mean travel time, Coverage analysis</p>
+                    <p><strong>Time:</strong> ~2 minutes for 200 neighborhoods × 5 rasters</p>
+                </div>
             </section>
 
-            <section id="advanced">
-                <h2>Advanced Tools</h2>
+            <!-- Statistics -->
+            <section id="statistics">
+                <h2>📊 Statistical Measures</h2>
+                <p>Zonify calculates 15+ statistical measures for each raster within each polygon:</p>
 
-                <h3>Score Creator</h3>
+                <h3>Position Statistics</h3>
+                <ul>
+                    <li><strong>Mean:</strong> Average value within the polygon</li>
+                    <li><strong>Median:</strong> Middle value (50th percentile)</li>
+                    <li><strong>Mode:</strong> Most frequent value</li>
+                    <li><strong>Min:</strong> Minimum value</li>
+                    <li><strong>Max:</strong> Maximum value</li>
+                </ul>
+
+                <h3>Dispersion Statistics</h3>
+                <ul>
+                    <li><strong>Sum:</strong> Total sum of all values (great for populations, counts)</li>
+                    <li><strong>Standard Deviation:</strong> Measure of spread around the mean</li>
+                    <li><strong>Variance:</strong> Square of standard deviation</li>
+                    <li><strong>Coefficient of Variation (CV):</strong> Std Dev / Mean × 100 (normalized variability)</li>
+                    <li><strong>Range:</strong> Max - Min</li>
+                </ul>
+
+                <h3>Distribution Statistics</h3>
+                <ul>
+                    <li><strong>Percentile 25 (Q1):</strong> First quartile</li>
+                    <li><strong>Percentile 50 (Q2):</strong> Median</li>
+                    <li><strong>Percentile 75 (Q3):</strong> Third quartile</li>
+                    <li><strong>Percentile 90:</strong> 90th percentile</li>
+                    <li><strong>Percentile 95:</strong> 95th percentile</li>
+                </ul>
+
+                <h3>Coverage Statistics</h3>
+                <ul>
+                    <li><strong>Count:</strong> Number of pixels with valid data</li>
+                    <li><strong>Coverage:</strong> Percentage of polygon covered by valid raster data (pixel-perfect geometric calculation)</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4>⚠️ When to Use Which Statistic</h4>
+                    <table>
+                        <tr>
+                            <th>Use Case</th>
+                            <th>Recommended Statistics</th>
+                        </tr>
+                        <tr>
+                            <td>Average conditions</td>
+                            <td>Mean, Median</td>
+                        </tr>
+                        <tr>
+                            <td>Total amounts (population, area)</td>
+                            <td>Sum</td>
+                        </tr>
+                        <tr>
+                            <td>Extreme values</td>
+                            <td>Min, Max, Percentiles</td>
+                        </tr>
+                        <tr>
+                            <td>Variability assessment</td>
+                            <td>Std Dev, CV, Range</td>
+                        </tr>
+                        <tr>
+                            <td>Distribution analysis</td>
+                            <td>Percentiles (25, 50, 75)</td>
+                        </tr>
+                        <tr>
+                            <td>Data quality check</td>
+                            <td>Count, Coverage</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Coverage Analysis -->
+            <section id="coverage">
+                <h2>🎯 Coverage Analysis</h2>
+                <p>Coverage analysis is one of Zonify's most important features. It tells you what percentage of each polygon contains valid raster data.</p>
+
+                <h3>Why Coverage Matters</h3>
+                <ul>
+                    <li><strong>Data Quality:</strong> Identifies polygons with incomplete data</li>
+                    <li><strong>Decision Making:</strong> Helps you decide if statistics are reliable</li>
+                    <li><strong>NoData Awareness:</strong> Shows where data is missing (clouds, gaps, etc.)</li>
+                    <li><strong>Validity Check:</strong> Polygons outside raster extent show 0% coverage</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>📐 Pixel-Perfect Geometric Calculation</h4>
+                    <p>Zonify uses advanced geometric algorithms to calculate coverage with pixel-level precision. This means:</p>
+                    <ul>
+                        <li>Edge pixels are properly accounted for (ALL_TOUCHED mode)</li>
+                        <li>Partial pixel coverage is accurately calculated</li>
+                        <li>Coverage percentages are mathematically accurate</li>
+                    </ul>
+                </div>
+
+                <h3>Example</h3>
+                <pre><code>Forest Parcel: 100 hectares
+Satellite image coverage: 75 hectares
+Coverage: 75%
+
+Interpretation:
+→ 25% of the parcel was cloudy during satellite pass
+→ Statistics represent only 75% of the parcel
+→ Consider if 75% coverage is sufficient for your analysis</code></pre>
+            </section>
+
+            <!-- Batch Processing -->
+            <section id="batch-processing">
+                <h2>🔄 Batch Processing</h2>
+                <p>Process multiple rasters simultaneously with smart resource management.</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Unlimited Rasters:</strong> Process as many rasters as you need in one run</li>
+                    <li><strong>Multi-threaded:</strong> Utilizes all available CPU cores</li>
+                    <li><strong>Smart RAM Management:</strong> User-configurable memory limits prevent system overload</li>
+                    <li><strong>Background Processing:</strong> QGIS stays fully responsive - continue working on other tasks</li>
+                    <li><strong>Resume Capability:</strong> Checkpoint system allows resuming interrupted jobs</li>
+                    <li><strong>VRT Optimization:</strong> Virtual rasters for efficient multi-raster reading</li>
+                </ul>
+
+                <h3>Configuration Options</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">💻</div>
+                        <h4>CPU Cores</h4>
+                        <p><strong>Default:</strong> Auto-detect<br><strong>Recommendation:</strong> Leave 1-2 cores free for system</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">💾</div>
+                        <h4>RAM Limit</h4>
+                        <p><strong>Default:</strong> 50% of system RAM<br><strong>Recommendation:</strong> Adjust based on other applications</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">📦</div>
+                        <h4>Chunk Size</h4>
+                        <p><strong>Default:</strong> 1000 features<br><strong>Tip:</strong> Larger = faster but more RAM</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Tools -->
+            <section id="score-creator">
+                <h2>🏆 Score Creator</h2>
                 <p>Combine multiple indicators into a single composite score with weighted importance levels.</p>
-                <p><strong>Use cases:</strong> Risk assessment, suitability analysis, priority ranking</p>
 
-                <h3>Area Classifier</h3>
-                <p>Classify continuous values into categories using:</p>
+                <h3>Use Cases</h3>
                 <ul>
-                    <li>Equal Intervals</li>
-                    <li>Quantiles</li>
-                    <li>Natural Breaks (Jenks)</li>
-                    <li>Custom breakpoints</li>
+                    <li><strong>Risk Assessment:</strong> Combine flood depth + population + vulnerability → Risk Score</li>
+                    <li><strong>Suitability Analysis:</strong> Combine slope + aspect + soil + water → Suitability Index</li>
+                    <li><strong>Priority Ranking:</strong> Combine poverty + accessibility + infrastructure → Priority Score</li>
                 </ul>
 
-                <h3>Quick Map Generator</h3>
-                <p>Generate professional maps with:</p>
+                <h3>How It Works</h3>
+                <ol>
+                    <li>Select 2-5 indicators from your processed results</li>
+                    <li>Assign importance level to each:
+                        <ul>
+                            <li>Very High (50% weight)</li>
+                            <li>High (30% weight)</li>
+                            <li>Medium (15% weight)</li>
+                            <li>Low (5% weight)</li>
+                        </ul>
+                    </li>
+                    <li>Choose normalization method (Min-Max or Z-Score)</li>
+                    <li>Name your score</li>
+                    <li>Generate! New layer with composite score field</li>
+                </ol>
+            </section>
+
+            <section id="area-classifier">
+                <h2>🎨 Area Classifier</h2>
+                <p>Classify continuous values into discrete categories.</p>
+
+                <h3>Classification Methods</h3>
                 <ul>
-                    <li>Automatic legend</li>
-                    <li>Scale bar</li>
-                    <li>North arrow</li>
-                    <li>Custom title and subtitle</li>
-                    <li>Export to PNG/PDF</li>
+                    <li><strong>Equal Intervals:</strong> Divides range into equal-sized bins (good for uniform distributions)</li>
+                    <li><strong>Quantiles:</strong> Equal number of features per class (good for skewed distributions)</li>
+                    <li><strong>Natural Breaks (Jenks):</strong> Finds natural groupings in data (best for most cases)</li>
+                    <li><strong>Custom Breaks:</strong> Define your own thresholds</li>
                 </ul>
 
-                <h3>Time Series Analysis</h3>
-                <p>Analyze temporal changes with:</p>
+                <h3>Number of Classes</h3>
+                <p>Choose 3 or 5 classes with customizable labels (e.g., Low/Medium/High or Very Low/Low/Medium/High/Very High)</p>
+            </section>
+
+            <section id="quick-map">
+                <h2>🗺️ Quick Map Generator</h2>
+                <p>Generate professional print-ready maps with one click.</p>
+
+                <h3>Features</h3>
                 <ul>
-                    <li>Trend detection</li>
-                    <li>Change analysis</li>
-                    <li>Temporal statistics</li>
+                    <li><strong>Auto-generated Legend:</strong> From layer symbology</li>
+                    <li><strong>Scale Bar:</strong> Automatically sized and positioned</li>
+                    <li><strong>North Arrow:</strong> Standard cartographic symbol</li>
+                    <li><strong>Title & Subtitle:</strong> Customizable text</li>
+                    <li><strong>Multiple Page Sizes:</strong> A4, A3, Letter</li>
+                    <li><strong>Orientation:</strong> Portrait or Landscape</li>
+                    <li><strong>Export Formats:</strong> PNG, PDF, SVG</li>
                 </ul>
             </section>
 
-            <section id="export">
-                <h2>Export Formats</h2>
+            <section id="time-series">
+                <h2>📈 Time Series Analysis</h2>
+                <p>Analyze temporal changes and trends across multiple time periods.</p>
+
+                <h3>Calculated Metrics</h3>
                 <ul>
-                    <li><strong>GeoPackage (.gpkg):</strong> Primary output with all attributes</li>
-                    <li><strong>CSV:</strong> Tabular data for Excel/spreadsheets</li>
-                    <li><strong>JSON:</strong> Structured data for APIs</li>
-                    <li><strong>HTML:</strong> Interactive dashboards with charts</li>
-                    <li><strong>PDF:</strong> Professional printable reports</li>
+                    <li><strong>First/Last Value:</strong> Values from earliest and latest time periods</li>
+                    <li><strong>Total Change:</strong> Last - First</li>
+                    <li><strong>Percent Change:</strong> (Change / First) × 100</li>
+                    <li><strong>Mean Change:</strong> Average change per time step</li>
+                    <li><strong>Trend Slope:</strong> Linear regression slope (rate of change)</li>
+                    <li><strong>Trend R²:</strong> How well data fits linear trend</li>
+                    <li><strong>Temporal Statistics:</strong> Mean, Min, Max, Range across all time periods</li>
                 </ul>
+
+                <h3>Example</h3>
+                <pre><code>Forest Monitoring: NDVI monthly (2020-2023) = 48 rasters
+
+Output per forest parcel:
+- ts_first_value: NDVI in Jan 2020
+- ts_last_value: NDVI in Dec 2023
+- ts_total_change: Change over 4 years
+- ts_percent_change: % change
+- ts_trend_slope: Rate of change (NDVI/month)
+- ts_trend_r2: Consistency of trend
+
+Interpretation:
+- Negative slope = deforestation
+- Positive slope = regrowth
+- High R² = steady trend
+- Low R² = variable/seasonal</code></pre>
             </section>
 
-            <section id="performance">
-                <h2>Performance</h2>
-                <p>Tested performance on 8-core CPU, 16GB RAM, SSD:</p>
-                <ul>
-                    <li>10 polygons × 1 raster: ~5 seconds</li>
-                    <li>1,000 polygons × 5 rasters: ~1-2 minutes</li>
-                    <li>100,000 polygons × 10 rasters: ~20-30 minutes</li>
-                    <li>500,000+ polygons × 20 rasters: ~2-3 hours</li>
-                </ul>
-            </section>
+            <!-- Export Formats -->
+            <section id="export-formats">
+                <h2>📤 Export Formats</h2>
 
-            <section id="troubleshooting">
-                <h2>Troubleshooting</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">📦</div>
+                        <h4>GeoPackage (.gpkg)</h4>
+                        <p>Primary output format. Single-file database with all attributes and geometry. Perfect for QGIS workflows.</p>
+                    </div>
 
-                <h3>Common Issues</h3>
+                    <div class="feature-card">
+                        <div class="icon">📄</div>
+                        <h4>CSV</h4>
+                        <p>Tabular data export. Opens in Excel, Google Sheets. Good for sharing with non-GIS users.</p>
+                    </div>
 
-                <div class="doc-card">
-                    <h4>❌ "Module not found: numpy"</h4>
-                    <p><strong>Solution:</strong> Python dependencies not installed. Run pip install command from installation section.</p>
+                    <div class="feature-card">
+                        <div class="icon">🔗</div>
+                        <h4>JSON</h4>
+                        <p>Structured data format. Machine-readable. Perfect for APIs and web applications.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4>HTML Dashboard</h4>
+                        <p>Interactive web report with charts, search, pagination, and dark/light mode.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="icon">📑</div>
+                        <h4>PDF Report</h4>
+                        <p>Professional printable report with tables, charts, and formatting.</p>
+                    </div>
                 </div>
-
-                <div class="doc-card">
-                    <h4>❌ Processing crashes or freezes</h4>
-                    <p><strong>Solutions:</strong></p>
-                    <ul>
-                        <li>Reduce RAM limit in settings</li>
-                        <li>Process fewer rasters at once</li>
-                        <li>Check for corrupted raster files</li>
-                        <li>Validate polygon geometries</li>
-                    </ul>
-                </div>
-
-                <div class="doc-card">
-                    <h4>❌ Results seem incorrect</h4>
-                    <p><strong>Checks:</strong></p>
-                    <ul>
-                        <li>Verify CRS matches between polygons and rasters</li>
-                        <li>Check raster NoData values</li>
-                        <li>Review coverage statistics</li>
-                        <li>Verify units are correct</li>
-                    </ul>
-                </div>
             </section>
 
-            <p style="margin-top: 3rem; padding: 2rem; background: var(--light); border-radius: 0.5rem; text-align: center;">
-                <strong>Need more help?</strong><br>
-                Visit our <a href="https://github.com/dragosgontariu/zonify/issues">GitHub Issues</a> or check the complete <a href="https://github.com/dragosgontariu/zonify/blob/main/docs/USER_GUIDE.md">User Guide</a>
-            </p>
+            <section id="html-dashboard">
+                <h2>📊 HTML Dashboard</h2>
+                <p>Professional interactive reports that open in any web browser.</p>
+
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Interactive Plotly Charts:</strong> Zoom, pan, hover for details</li>
+                    <li><strong>Dark/Light Mode Toggle:</strong> Comfortable viewing in any environment</li>
+                    <li><strong>Search & Filter:</strong> Find specific features quickly</li>
+                    <li><strong>Pagination:</strong> 100 entries per page for large datasets</li>
+                    <li><strong>Coverage Analysis:</strong> Visual breakdown by coverage ranges</li>
+                    <li><strong>Statistics per Raster:</strong> Individual charts for each raster</li>
+                    <li><strong>Responsive Design:</strong> Works on desktop, tablet, and mobile</li>
+                    <li><strong>No Installation Required:</strong> Just double-click the .html file!</li>
+                </ul>
+            </section>
+
+            <!-- Performance -->
+            <section id="optimization">
+                <h2>⚡ Performance Optimization</h2>
+
+                <h3>What Affects Speed</h3>
+                <ol>
+                    <li><strong>Number of Features:</strong> More polygons = longer processing</li>
+                    <li><strong>Number of Rasters:</strong> More rasters = longer processing</li>
+                    <li><strong>Raster Resolution:</strong> Higher resolution = more pixels = slower</li>
+                    <li><strong>Number of Statistics:</strong> More stats = slightly slower</li>
+                    <li><strong>CPU Cores:</strong> More cores = faster (diminishing returns after 8 cores)</li>
+                    <li><strong>Storage Speed:</strong> SSD is 2-3x faster than HDD</li>
+                </ol>
+
+                <h3>Optimization Tips</h3>
+                <ul>
+                    <li>✅ Use SSD storage for input/output files</li>
+                    <li>✅ Increase chunk size if you have spare RAM</li>
+                    <li>✅ Use VRT for multiple rasters (automatic in Zonify)</li>
+                    <li>✅ Close other applications to free up resources</li>
+                    <li>✅ Only calculate statistics you actually need</li>
+                    <li>✅ Consider resampling very high-resolution rasters for preliminary analysis</li>
+                </ul>
+            </section>
+
+            <section id="benchmarks">
+                <h2>📊 Performance Benchmarks</h2>
+                <p>Tested on: 8-core CPU, 16GB RAM, SSD</p>
+
+                <table>
+                    <tr>
+                        <th>Features</th>
+                        <th>Rasters</th>
+                        <th>Statistics</th>
+                        <th>Time</th>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>~5 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>5</td>
+                        <td>8</td>
+                        <td>~30 seconds</td>
+                    </tr>
+                    <tr>
+                        <td>1,000</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>~2 minutes</td>
+                    </tr>
+                    <tr>
+                        <td>10,000</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>~8 minutes</td>
+                    </tr>
+                    <tr>
+                        <td>100,000</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>~30 minutes</td>
+                    </tr>
+                    <tr>
+                        <td>500,000</td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>~2-3 hours</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq-installation">
+                <h2>❓ FAQ - Installation</h2>
+
+                <h3>Q: Where can I download Zonify?</h3>
+                <p>A: From the <a href="https://github.com/dragosgontariu/zonify/releases/latest" target="_blank">GitHub Releases page</a> or soon from QGIS Plugin Manager (awaiting approval).</p>
+
+                <h3>Q: I get "Module not found: numpy" error. What should I do?</h3>
+                <p>A: Python dependencies aren't installed. Open OSGeo4W Shell (Windows) or terminal (Linux/Mac) and run:</p>
+                <pre><code>pip install numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
+
+                <h3>Q: Plugin doesn't appear after installation. Why?</h3>
+                <p>A: Try these steps:</p>
+                <ol>
+                    <li>Restart QGIS completely</li>
+                    <li>Check Plugins → Manage and Install Plugins → Installed → Enable Zonify</li>
+                    <li>Check Python console for errors: Plugins → Python Console</li>
+                </ol>
+            </section>
+
+            <section id="faq-usage">
+                <h2>❓ FAQ - Usage</h2>
+
+                <h3>Q: How many rasters can I process at once?</h3>
+                <p>A: Unlimited! Zonify has been tested with 20+ rasters without issues. Processing time increases linearly with number of rasters.</p>
+
+                <h3>Q: Do polygons and rasters need to be in the same CRS?</h3>
+                <p>A: No! Zonify automatically handles CRS differences through reprojection. However, using the same CRS is faster.</p>
+
+                <h3>Q: What does "Coverage" mean?</h3>
+                <p>A: Coverage is the percentage of a polygon that contains valid raster data (not NoData). Example: Coverage = 85% means 85% of polygon area has raster data, 15% is NoData or outside raster extent.</p>
+
+                <h3>Q: Which statistics should I use?</h3>
+                <p>A:</p>
+                <ul>
+                    <li><strong>Mean</strong> - Most common, good for averages (temperature, elevation)</li>
+                    <li><strong>Sum</strong> - Good for totals (population, area)</li>
+                    <li><strong>Min/Max</strong> - For extreme values</li>
+                    <li><strong>Median</strong> - When data has outliers</li>
+                    <li><strong>Std Dev/CV</strong> - For measuring variability</li>
+                </ul>
+            </section>
+
+            <section id="faq-performance">
+                <h2>❓ FAQ - Performance</h2>
+
+                <h3>Q: How long does processing take?</h3>
+                <p>A: It depends on data size. See <a href="#benchmarks">Performance Benchmarks</a> for examples. Generally:</p>
+                <ul>
+                    <li>Small (10 polygons, 1 raster): ~5 seconds</li>
+                    <li>Medium (1,000 polygons, 5 rasters): ~2 minutes</li>
+                    <li>Large (100,000 polygons, 10 rasters): ~30 minutes</li>
+                </ul>
+
+                <h3>Q: Does QGIS freeze during processing?</h3>
+                <p>A: No! Zonify uses true background processing. QGIS stays fully responsive and you can continue working on other tasks.</p>
+
+                <h3>Q: Can I speed up processing?</h3>
+                <p>A: Yes! See <a href="#optimization">Performance Optimization</a> section. Quick tips:</p>
+                <ul>
+                    <li>Use SSD storage</li>
+                    <li>Increase CPU cores in settings</li>
+                    <li>Close other applications</li>
+                    <li>Only calculate needed statistics</li>
+                </ul>
+            </section>
+
+            <section id="faq-troubleshooting">
+                <h2>❓ FAQ - Troubleshooting</h2>
+
+                <h3>Q: Processing crashes or freezes. What should I do?</h3>
+                <p>A: Try these solutions:</p>
+                <ul>
+                    <li>Reduce RAM limit in Settings tab</li>
+                    <li>Process fewer rasters at once</li>
+                    <li>Check for corrupted raster files</li>
+                    <li>Validate polygon geometries (Vector → Geometry Tools → Check Validity)</li>
+                </ul>
+
+                <h3>Q: Results seem incorrect. How do I verify?</h3>
+                <p>A: Check these:</p>
+                <ul>
+                    <li>Verify CRS matches between polygons and rasters</li>
+                    <li>Check raster NoData values are set correctly</li>
+                    <li>Review coverage statistics - low coverage may indicate issues</li>
+                    <li>Verify raster units are as expected</li>
+                    <li>Visual inspection: load results in QGIS and check spatial patterns</li>
+                </ul>
+
+                <h3>Q: Some polygons have very low coverage. Why?</h3>
+                <p>A: Common reasons:</p>
+                <ul>
+                    <li>Polygon extends outside raster extent</li>
+                    <li>Raster has NoData in that area (clouds, data gaps)</li>
+                    <li>CRS mismatch causing misalignment</li>
+                </ul>
+                <p>Solution: Check coverage statistics and decide if those polygons should be excluded from analysis.</p>
+
+                <h3>Q: HTML dashboard won't open. What should I do?</h3>
+                <p>A: Try these:</p>
+                <ul>
+                    <li>Try a different browser (Chrome, Firefox, Edge)</li>
+                    <li>Move file to a simple path (no spaces or special characters)</li>
+                    <li>Check browser security settings (some browsers block local HTML files)</li>
+                    <li>Regenerate HTML export</li>
+                </ul>
+            </section>
+
+            <!-- Final Note -->
+            <div class="success-box" style="margin-top: 3rem;">
+                <h4>📞 Still Need Help?</h4>
+                <p>Can't find your answer? We're here to help!</p>
+                <ul>
+                    <li><strong>GitHub Issues:</strong> <a href="https://github.com/dragosgontariu/zonify/issues" target="_blank">Report bugs or ask questions</a></li>
+                    <li><strong>Discussions:</strong> <a href="https://github.com/dragosgontariu/zonify/discussions" target="_blank">Community help and feedback</a></li>
+                    <li><strong>Email:</strong> gontariudragos@gmail.com</li>
+                </ul>
+            </div>
         </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" onclick="scrollToTop()">
+        ↑
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Zonify | <a href="https://github.com/dragosgontariu/zonify" style="color: #60a5fa;">GitHub</a> | <a href="https://github.com/dragosgontariu/zonify/blob/main/LICENSE" style="color: #60a5fa;">GPL-3.0 License</a></p>
+        <p>© 2026 Zonify | <a href="https://github.com/dragosgontariu/zonify">GitHub</a> | <a href="https://github.com/dragosgontariu/zonify/blob/main/LICENSE">GPL-3.0 License</a></p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('show');
+            });
+
+            // Open clicked accordion if it wasn't active
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('show');
+            }
+        }
+
+        // Back to top button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
