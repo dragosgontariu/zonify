@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonify - Documentation</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --primary-dark: #2563eb;
+            --dark: #1f2937;
+            --darker: #111827;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            color: var(--dark);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Content */
+        .content {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .content h2 {
+            font-size: 1.875rem;
+            color: var(--dark);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .content h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content code {
+            background: var(--light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--primary-dark);
+        }
+
+        .content pre {
+            background: var(--darker);
+            color: #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .content pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .doc-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="https://raw.githubusercontent.com/dragosgontariu/zonify/main/icon.png" alt="Zonify">
+                <span>Zonify</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#screenshots">Screenshots</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="index.html#download">Download</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Documentation</h3>
+            <ul>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#features">Core Features</a></li>
+                <li><a href="#advanced">Advanced Tools</a></li>
+                <li><a href="#export">Export Formats</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">Resources</h3>
+            <ul>
+                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/QUICK_START.md">Quick Start Guide</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/USER_GUIDE.md">User Guide</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify/blob/main/docs/FAQ.md">FAQ</a></li>
+                <li><a href="https://github.com/dragosgontariu/zonify/issues">Support</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+            <h1>Zonify Documentation</h1>
+            <p>Complete guide to using Zonify for advanced zonal statistics analysis in QGIS.</p>
+
+            <section id="getting-started">
+                <h2>Getting Started</h2>
+                <p>Zonify is a professional QGIS plugin for performing advanced zonal statistics analysis. It allows you to efficiently extract and analyze raster data within polygon zones.</p>
+
+                <div class="doc-card">
+                    <h4>✨ What makes Zonify special?</h4>
+                    <ul>
+                        <li>Process unlimited rasters in one batch</li>
+                        <li>15+ statistical measures including coverage analysis</li>
+                        <li>Multi-threaded processing with smart resource management</li>
+                        <li>Professional HTML dashboards and PDF reports</li>
+                        <li>Advanced tools: Score Creator, Classifier, Map Generator</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="installation">
+                <h2>Installation</h2>
+
+                <h3>Requirements</h3>
+                <ul>
+                    <li><strong>QGIS:</strong> 3.28 or higher</li>
+                    <li><strong>Python:</strong> 3.9 or higher</li>
+                    <li><strong>RAM:</strong> 4GB minimum, 16GB recommended</li>
+                    <li><strong>CPU:</strong> 2 cores minimum, 4+ recommended</li>
+                </ul>
+
+                <h3>Step 1: Download Plugin</h3>
+                <p>Download the latest release from <a href="https://github.com/dragosgontariu/zonify/releases/latest">GitHub Releases</a>.</p>
+
+                <h3>Step 2: Install to QGIS</h3>
+                <p>Extract the ZIP file to your QGIS plugins directory:</p>
+                <ul>
+                    <li><strong>Windows:</strong> <code>C:\Users\&lt;username&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></li>
+                    <li><strong>Linux:</strong> <code>~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/</code></li>
+                    <li><strong>macOS:</strong> <code>~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/</code></li>
+                </ul>
+
+                <h3>Step 3: Install Python Dependencies</h3>
+                <p><strong>Windows (OSGeo4W Shell as Administrator):</strong></p>
+                <pre><code>pip install numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
+
+                <p><strong>Linux/Mac:</strong></p>
+                <pre><code>pip3 install --user numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
+
+                <h3>Step 4: Enable Plugin</h3>
+                <ol>
+                    <li>Restart QGIS</li>
+                    <li>Go to Plugins → Manage and Install Plugins</li>
+                    <li>Find "Zonify" and check the box</li>
+                    <li>Look for the Zonify icon in the toolbar</li>
+                </ol>
+            </section>
+
+            <section id="quick-start">
+                <h2>Quick Start</h2>
+                <p>Get started with Zonify in 5 minutes!</p>
+
+                <h3>Basic Workflow</h3>
+                <ol>
+                    <li><strong>Open Zonify:</strong> Click the Zonify icon or go to Plugins → Zonify</li>
+                    <li><strong>Select Polygon Layer:</strong> Choose your zones/regions layer</li>
+                    <li><strong>Add Rasters:</strong> Click "Add Raster(s)" and select your files</li>
+                    <li><strong>Choose Statistics:</strong> Select which statistics to calculate (Mean, Sum, etc.)</li>
+                    <li><strong>Set Output:</strong> Choose where to save results</li>
+                    <li><strong>Run Processing:</strong> Click "Run Processing" button</li>
+                </ol>
+
+                <div class="doc-card">
+                    <h4>💡 Pro Tip</h4>
+                    <p>Start with a small dataset (10-20 polygons, 1 raster) to test the workflow before processing large datasets.</p>
+                </div>
+            </section>
+
+            <section id="features">
+                <h2>Core Features</h2>
+
+                <h3>Statistical Measures</h3>
+                <p>Zonify calculates 15+ statistical measures:</p>
+                <ul>
+                    <li><strong>Position:</strong> Mean, Median, Mode, Min, Max</li>
+                    <li><strong>Dispersion:</strong> Sum, Standard Deviation, Variance, CV, Range</li>
+                    <li><strong>Distribution:</strong> Percentiles (25th, 50th, 75th, 90th, 95th)</li>
+                    <li><strong>Coverage:</strong> Pixel count and coverage percentage (pixel-perfect geometric analysis)</li>
+                </ul>
+
+                <h3>Coverage Analysis</h3>
+                <p>Coverage shows what percentage of each polygon contains valid raster data. This is crucial for:</p>
+                <ul>
+                    <li>Data quality assessment</li>
+                    <li>Identifying incomplete coverage</li>
+                    <li>Understanding NoData areas</li>
+                    <li>Making informed decisions about statistical validity</li>
+                </ul>
+
+                <h3>Batch Processing</h3>
+                <p>Process multiple rasters simultaneously with:</p>
+                <ul>
+                    <li>Multi-threaded processing (use all CPU cores)</li>
+                    <li>Smart RAM management</li>
+                    <li>Resume/checkpoint system</li>
+                    <li>Background processing (QGIS stays responsive)</li>
+                </ul>
+            </section>
+
+            <section id="advanced">
+                <h2>Advanced Tools</h2>
+
+                <h3>Score Creator</h3>
+                <p>Combine multiple indicators into a single composite score with weighted importance levels.</p>
+                <p><strong>Use cases:</strong> Risk assessment, suitability analysis, priority ranking</p>
+
+                <h3>Area Classifier</h3>
+                <p>Classify continuous values into categories using:</p>
+                <ul>
+                    <li>Equal Intervals</li>
+                    <li>Quantiles</li>
+                    <li>Natural Breaks (Jenks)</li>
+                    <li>Custom breakpoints</li>
+                </ul>
+
+                <h3>Quick Map Generator</h3>
+                <p>Generate professional maps with:</p>
+                <ul>
+                    <li>Automatic legend</li>
+                    <li>Scale bar</li>
+                    <li>North arrow</li>
+                    <li>Custom title and subtitle</li>
+                    <li>Export to PNG/PDF</li>
+                </ul>
+
+                <h3>Time Series Analysis</h3>
+                <p>Analyze temporal changes with:</p>
+                <ul>
+                    <li>Trend detection</li>
+                    <li>Change analysis</li>
+                    <li>Temporal statistics</li>
+                </ul>
+            </section>
+
+            <section id="export">
+                <h2>Export Formats</h2>
+                <ul>
+                    <li><strong>GeoPackage (.gpkg):</strong> Primary output with all attributes</li>
+                    <li><strong>CSV:</strong> Tabular data for Excel/spreadsheets</li>
+                    <li><strong>JSON:</strong> Structured data for APIs</li>
+                    <li><strong>HTML:</strong> Interactive dashboards with charts</li>
+                    <li><strong>PDF:</strong> Professional printable reports</li>
+                </ul>
+            </section>
+
+            <section id="performance">
+                <h2>Performance</h2>
+                <p>Tested performance on 8-core CPU, 16GB RAM, SSD:</p>
+                <ul>
+                    <li>10 polygons × 1 raster: ~5 seconds</li>
+                    <li>1,000 polygons × 5 rasters: ~1-2 minutes</li>
+                    <li>100,000 polygons × 10 rasters: ~20-30 minutes</li>
+                    <li>500,000+ polygons × 20 rasters: ~2-3 hours</li>
+                </ul>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>Troubleshooting</h2>
+
+                <h3>Common Issues</h3>
+
+                <div class="doc-card">
+                    <h4>❌ "Module not found: numpy"</h4>
+                    <p><strong>Solution:</strong> Python dependencies not installed. Run pip install command from installation section.</p>
+                </div>
+
+                <div class="doc-card">
+                    <h4>❌ Processing crashes or freezes</h4>
+                    <p><strong>Solutions:</strong></p>
+                    <ul>
+                        <li>Reduce RAM limit in settings</li>
+                        <li>Process fewer rasters at once</li>
+                        <li>Check for corrupted raster files</li>
+                        <li>Validate polygon geometries</li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h4>❌ Results seem incorrect</h4>
+                    <p><strong>Checks:</strong></p>
+                    <ul>
+                        <li>Verify CRS matches between polygons and rasters</li>
+                        <li>Check raster NoData values</li>
+                        <li>Review coverage statistics</li>
+                        <li>Verify units are correct</li>
+                    </ul>
+                </div>
+            </section>
+
+            <p style="margin-top: 3rem; padding: 2rem; background: var(--light); border-radius: 0.5rem; text-align: center;">
+                <strong>Need more help?</strong><br>
+                Visit our <a href="https://github.com/dragosgontariu/zonify/issues">GitHub Issues</a> or check the complete <a href="https://github.com/dragosgontariu/zonify/blob/main/docs/USER_GUIDE.md">User Guide</a>
+            </p>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Zonify | <a href="https://github.com/dragosgontariu/zonify" style="color: #60a5fa;">GitHub</a> | <a href="https://github.com/dragosgontariu/zonify/blob/main/LICENSE" style="color: #60a5fa;">GPL-3.0 License</a></p>
+    </footer>
+</body>
+</html>
