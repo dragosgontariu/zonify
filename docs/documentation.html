@@ -605,10 +605,10 @@
                     <h4>✨ What makes Zonify special?</h4>
                     <ul>
                         <li>Process unlimited rasters in one batch</li>
-                        <li>15+ statistical measures including pixel-perfect coverage analysis</li>
+                        <li>20+ statistical measures including pixel-perfect coverage analysis</li>
                         <li>Multi-threaded processing with smart resource management</li>
                         <li>Professional HTML dashboards and PDF reports</li>
-                        <li>Advanced tools: Score Creator, Classifier, Map Generator, Time Series</li>
+                        <li>Advanced tools: Score Creator, Classifier, Highlighter, Rule Tagger, Time Series, Map Generator</li>
                         <li>Resume capability for long-running jobs</li>
                     </ul>
                 </div>
@@ -707,7 +707,7 @@ pyarrow>=12.0</code></pre>
                     <li><strong>Add Rasters:</strong> Click "Add Raster(s)" button and select one or more raster files</li>
                     <li><strong>Choose Statistics:</strong> Check the statistics you want to calculate (Mean, Sum, Min, Max, etc.)</li>
                     <li><strong>Set Output Path:</strong> Choose where to save your results</li>
-                    <li><strong>Run Processing:</strong> Click the "Run Processing" button and watch the magic happen!</li>
+                    <li><strong>Run Processing:</strong> Click the "Run Standard Processing" button and watch the magic happen!</li>
                 </ol>
 
                 <div class="info-box">
@@ -756,28 +756,32 @@ pyarrow>=12.0</code></pre>
             <!-- Statistics -->
             <section id="statistics">
                 <h2>📊 Statistical Measures</h2>
-                <p>Zonify calculates 15+ statistical measures for each raster within each polygon:</p>
+                <p>Zonify calculates 20+ statistical measures for each raster within each polygon:</p>
 
-                <h3>Position Statistics</h3>
+                <h3>Basic Statistics</h3>
                 <ul>
-                    <li><strong>Mean:</strong> Average value within the polygon</li>
-                    <li><strong>Median:</strong> Middle value (50th percentile)</li>
-                    <li><strong>Mode:</strong> Most frequent value</li>
-                    <li><strong>Min:</strong> Minimum value</li>
-                    <li><strong>Max:</strong> Maximum value</li>
+                    <li><strong>Mean:</strong> Average value of pixels within each zone</li>
+                    <li><strong>Sum:</strong> Total sum of pixel values in each zone</li>
+                    <li><strong>Min:</strong> Find the minimum pixel value in each zone</li>
+                    <li><strong>Max:</strong> Find the maximum pixel value in each zone</li>
+                    <li><strong>Median:</strong> Middle value in each zone</li>
+                    <li><strong>Mode:</strong> Find the most frequently occurring pixel value in each zone</li>
+                    <li><strong>Count:</strong> Count the number of pixels in each zone</li>
+                    <li><strong>Minority:</strong> Find the least frequently occurring pixel value in each zone</li>
+                    <li><strong>Range:</strong> The difference between max and min values</li>
+                    <li><strong>Variety:</strong> Count the number of unique pixel values in each zone</li>
                 </ul>
 
-                <h3>Dispersion Statistics</h3>
+                <h3>Advanced Statistics</h3>
                 <ul>
-                    <li><strong>Sum:</strong> Total sum of all values (great for populations, counts)</li>
                     <li><strong>Standard Deviation:</strong> Measure of spread around the mean</li>
                     <li><strong>Variance:</strong> Square of standard deviation</li>
                     <li><strong>Coefficient of Variation (CV):</strong> Std Dev / Mean × 100 (normalized variability)</li>
-                    <li><strong>Range:</strong> Max - Min</li>
                 </ul>
 
-                <h3>Distribution Statistics</h3>
+                <h3>Percentiles</h3>
                 <ul>
+                    <li><strong>Percentile 10:</strong> 10th percentile value</li>
                     <li><strong>Percentile 25 (Q1):</strong> First quartile</li>
                     <li><strong>Percentile 50 (Q2):</strong> Median</li>
                     <li><strong>Percentile 75 (Q3):</strong> Third quartile</li>
@@ -787,7 +791,6 @@ pyarrow>=12.0</code></pre>
 
                 <h3>Coverage Statistics</h3>
                 <ul>
-                    <li><strong>Count:</strong> Number of pixels with valid data</li>
                     <li><strong>Coverage:</strong> Percentage of polygon covered by valid raster data (pixel-perfect geometric calculation)</li>
                 </ul>
 
@@ -940,6 +943,27 @@ Interpretation:
 
                 <h3>Number of Classes</h3>
                 <p>Choose 3 or 5 classes with customizable labels (e.g., Low/Medium/High or Very Low/Low/Medium/High/Very High)</p>
+            </section>
+
+            <section id="area-highlighter">
+                <h2>🏁 Area Highlighter</h2>
+                <p>Flag top/bottom performing areas based on percentiles.</p>
+
+                <h3>Use Cases</h3>
+                <ul>
+                    <li><strong>Priority Areas:</strong> Top 10% solar potential → "High Priority Sites"</li>
+                    <li><strong>At-Risk Areas:</strong> Bottom 20% accessibility → "Needs Improvement"</li>
+                    <li><strong>Investment Focus:</strong> Top 5% ROI → "Prime Investment Zones"</li>
+                    <li><strong>Intervention Zones:</strong> Bottom 15% health index → "Critical Areas"</li>
+                </ul>
+
+                <h3>How It Works</h3>
+                <ul>
+                    <li>Values are ranked from lowest to highest</li>
+                    <li>Top X% = areas with highest values (best performers)</li>
+                    <li>Bottom X% = areas with lowest values (worst performers)</li>
+                    <li>Creates binary flags (1/0) for easy filtering in QGIS</li>
+                    <li>Text labels make maps readable for any audience</li>
             </section>
 
             <section id="quick-map">
