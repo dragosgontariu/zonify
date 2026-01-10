@@ -264,15 +264,25 @@
         }
 
         .stats-grid {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(6, 1fr));
             gap: 2rem;
             position: relative;
             z-index: 1;
         }
-
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
         .stat-item h3 {
             font-size: 3rem;
             font-weight: 800;
@@ -293,11 +303,16 @@
 
         .screenshot-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-
+        /* Responsive pentru mobile */
+        @media (max-width: 968px) {
+            .screenshot-container {
+                grid-template-columns: 1fr;
+            }
+        }
         .screenshot {
             border-radius: 0.5rem;
             overflow: hidden;
