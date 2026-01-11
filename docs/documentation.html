@@ -660,40 +660,96 @@ pyarrow>=12.0</code></pre>
             <!-- Installation -->
             <section id="installation">
                 <h2>📥 Installation</h2>
-
-                <h3>Step 1: Download Plugin</h3>
-                <p>Download the latest release from <a href="https://github.com/dragosgontariu/zonify/releases/latest" target="_blank">GitHub Releases</a> or install directly from QGIS Plugin Manager (coming soon).</p>
-
-                <h3>Step 2: Install to QGIS</h3>
+            
+                <!-- Method 1: QGIS Plugin Manager -->
+                <h3>Method 1: QGIS Plugin Manager (Recommended) ⭐</h3>
+                <p>The easiest way to install Zonify is directly from QGIS:</p>
+                
+                <ol style="font-size: 1.1rem; line-height: 2;">
+                    <li>Open <strong>QGIS</strong></li>
+                    <li>Go to <strong>Plugins → Manage and Install Plugins</strong></li>
+                    <li>In the search box, type <strong>"Zonify"</strong></li>
+                    <li>Click <strong>Install Plugin</strong></li>
+                    <li>When prompted about dependencies, click <strong>"Yes"</strong> to install automatically</li>
+                    <li>Done! The plugin is now ready to use 🎉</li>
+                </ol>
+                
+                <div class="success-box">
+                    <h4>✅ Official QGIS Plugin</h4>
+                    <p>Zonify is now available on the official QGIS Plugin Repository. You'll get automatic updates and easy installation!</p>
+                    <p><strong>Direct link:</strong> <a href="https://plugins.qgis.org/plugins/Zonify/" target="_blank">plugins.qgis.org/plugins/Zonify</a></p>
+                </div>
+            
+                <div class="info-box">
+                    <h4>💡 About Dependencies</h4>
+                    <p>When you install from QGIS Plugin Manager, Python dependencies (numpy, pandas, etc.) are installed automatically. Just click "Yes" when prompted!</p>
+                    <p>If automatic installation fails, see the troubleshooting section below.</p>
+                </div>
+            
+                <!-- Method 2: Manual Installation -->
+                <h3>Method 2: Manual Installation (Advanced)</h3>
+                <p>For advanced users, developers, or custom installations:</p>
+                
+                <h4>Step 1: Download Plugin</h4>
+                <p>Download the latest release from <a href="https://github.com/dragosgontariu/zonify/releases/latest" target="_blank">GitHub Releases</a></p>
+            
+                <h4>Step 2: Extract to QGIS Plugins Directory</h4>
                 <p>Extract the ZIP file to your QGIS plugins directory:</p>
-
+                
                 <div class="info-box">
                     <h4>📁 Plugin Directories</h4>
                     <p><strong>Windows:</strong><br><code>C:\Users\&lt;username&gt;\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</code></p>
                     <p><strong>Linux:</strong><br><code>~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/</code></p>
                     <p><strong>macOS:</strong><br><code>~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/</code></p>
                 </div>
-
-                <h3>Step 3: Install Python Dependencies</h3>
+            
+                <h4>Step 3: Install Python Dependencies</h4>
+                <p>For manual installation, you must install dependencies manually:</p>
                 
-                <h4>Windows (OSGeo4W Shell as Administrator):</h4>
+                <p><strong>Windows (OSGeo4W Shell as Administrator):</strong></p>
                 <pre><code>pip install numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
-
-                <h4>Linux/Mac:</h4>
+                
+                <p><strong>Linux/Mac:</strong></p>
                 <pre><code>pip3 install --user numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></pre>
-
-                <h3>Step 4: Enable Plugin</h3>
+            
+                <h4>Step 4: Enable Plugin in QGIS</h4>
                 <ol>
                     <li>Restart QGIS</li>
                     <li>Go to <strong>Plugins → Manage and Install Plugins</strong></li>
-                    <li>Find <strong>"Zonify"</strong> in the list</li>
-                    <li>Check the box to enable it</li>
-                    <li>Look for the Zonify icon in the toolbar</li>
+                    <li>Click on <strong>"Installed"</strong> tab</li>
+                    <li>Find <strong>"Zonify"</strong> and check the box to enable it</li>
+                    <li>Look for the Zonify icon 🗺️ in the toolbar</li>
                 </ol>
-
+            
+                <!-- Troubleshooting -->
+                <h3>Troubleshooting Dependencies</h3>
+                <div class="warning-box">
+                    <h4>⚠️ If automatic dependency installation fails</h4>
+                    <p>Some users may need to install dependencies manually, especially if QGIS doesn't have write permissions. If you see errors about missing modules (numpy, pandas, etc.), follow these steps:</p>
+                    
+                    <p><strong>Windows:</strong></p>
+                    <ol>
+                        <li>Close QGIS completely</li>
+                        <li>Open <strong>OSGeo4W Shell</strong> as Administrator (search in Start Menu)</li>
+                        <li>Run the command: <code>pip install numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></li>
+                        <li>Wait for installation to complete</li>
+                        <li>Restart QGIS</li>
+                    </ol>
+                    
+                    <p><strong>Linux/Mac:</strong></p>
+                    <ol>
+                        <li>Open Terminal</li>
+                        <li>Run: <code>pip3 install --user numpy pandas scipy matplotlib plotly reportlab jinja2 psutil pyarrow</code></li>
+                        <li>If you get permission errors, try with <code>sudo</code> (not recommended) or use a virtual environment</li>
+                        <li>Restart QGIS</li>
+                    </ol>
+                    
+                    <p style="margin-top: 1rem;"><strong>Still having issues?</strong> Check our <a href="#faq-installation">FAQ section</a> or <a href="https://github.com/dragosgontariu/zonify/issues" target="_blank">open an issue on GitHub</a>.</p>
+                </div>
+            
                 <div class="success-box">
                     <h4>✅ Installation Complete!</h4>
-                    <p>You're now ready to start using Zonify. Check out the Quick Start section to begin!</p>
+                    <p>You're now ready to start using Zonify. Check out the <a href="#basic-workflow">Quick Start section</a> to begin!</p>
                 </div>
             </section>
 
@@ -1276,6 +1332,7 @@ Interpretation:
                 <h4>📞 Still Need Help?</h4>
                 <p>Can't find your answer? We're here to help!</p>
                 <ul>
+                    <li><strong>Official Plugin Page:</strong> <a href="https://plugins.qgis.org/plugins/Zonify/" target="_blank">QGIS Plugin Repository</a></li>
                     <li><strong>GitHub Issues:</strong> <a href="https://github.com/dragosgontariu/zonify/issues" target="_blank">Report bugs or ask questions</a></li>
                     <li><strong>Discussions:</strong> <a href="https://github.com/dragosgontariu/zonify/discussions" target="_blank">Community help and feedback</a></li>
                     <li><strong>Email:</strong> gontariudragos@gmail.com</li>
