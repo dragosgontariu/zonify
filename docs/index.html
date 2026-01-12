@@ -600,28 +600,54 @@
             <div class="screenshot">
                 <img src="https://raw.githubusercontent.com/dragosgontariu/zonify/main/docs/images/04_score_creator.png" alt="Score Creator">
             </div>
-            <div class="screenshot" style="background: #000; border-radius: 0.5rem; overflow: hidden; position: relative;">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                    <iframe 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/qcEmzRLD5K0" 
-                        title="Zonify Tutorial Video"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
+            <div class="screenshot" style="background: white; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 1rem;">
+    
+                <!-- Grid 2x2 pentru video-uri -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                     
-                    <!-- Overlay text pe zona neagră -->
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.85); padding: 1rem; text-align: center; backdrop-filter: blur(5px);">
-                        <p style="margin: 0; color: white; font-size: 0.95rem; opacity: 0.9;">
-                            📹 More tutorials coming soon!
-                        </p>
+                    <!-- Video 1 - NOU -->
+                    <div style="background: #000; border-radius: 0.5rem; overflow: hidden;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                            <iframe 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/NaewzKz6zw0" 
+                                title="Zonify Tutorial 1"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div style="padding: 0.75rem; background: #1a1a1a;">
+                            <h5 style="margin: 0; color: white; font-size: 0.9rem; font-weight: 600;">Tutorial 1</h5>
+                        </div>
                     </div>
+            
+                    <!-- Video 2 - Existent -->
+                    <div style="background: #000; border-radius: 0.5rem; overflow: hidden;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                            <iframe 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/qcEmzRLD5K0" 
+                                title="Quick Start Tutorial"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div style="padding: 0.75rem; background: #1a1a1a;">
+                            <h5 style="margin: 0; color: white; font-size: 0.9rem; font-weight: 600;">Quick Start Tutorial</h5>
+                        </div>
+                    </div>
+            
                 </div>
-                <div style="padding: 1rem; background: white;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--dark);">Quick Start Tutorial</h4>
-                    <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">First run guide</p>
+            
+                <!-- More videos coming soon - Full width -->
+                <div style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%); border-radius: 0.5rem; padding: 1.5rem; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📹</div>
+                    <p style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">More video tutorials coming soon!</p>
+                    <p style="margin: 0.5rem 0 0 0; color: rgba(255,255,255,0.8); font-size: 0.85rem;">Subscribe to our YouTube channel for updates</p>
                 </div>
+            
             </div>
         </div>
     </section>
