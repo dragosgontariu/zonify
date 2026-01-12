@@ -5,7 +5,7 @@
 ![Zonify Icon](icon.png)
 
 **Advanced Zonal Statistics Processor for QGIS**
-
+[![QGIS Plugin](https://img.shields.io/badge/QGIS%20Plugin-Official-success)](https://plugins.qgis.org/plugins/Zonify/)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dragosgontariu/zonify/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0-green.svg)](LICENSE)
 [![QGIS](https://img.shields.io/badge/QGIS-3.28+-orange.svg)](https://qgis.org)
@@ -16,7 +16,10 @@
 </div>
 
 ---
+🎉 **Now officially available on QGIS Plugin Repository!**
 
+📖 **Website:** https://dragosgontariu.github.io/zonify  
+🔗 **Plugin Page:** https://plugins.qgis.org/plugins/Zonify/
 ## 📸 Screenshots
 
 ### Main Interface
